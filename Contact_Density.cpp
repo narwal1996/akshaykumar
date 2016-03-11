@@ -1,4 +1,8 @@
-/* native.pdb and conformation.pdb required for this program. */
+/* native.pdb and conformation.pdb required for this program. 
+contact density = q(conf) / q(native)
+q = number density = total number of contacts per structure (protein).
+contact density tells how close is this conformation to native structure.
+*/
 
 # include <iostream>
 #include <fstream>
