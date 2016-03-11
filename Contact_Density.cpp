@@ -1,3 +1,5 @@
+/* native.pdb and conformation.pdb required for this program. */
+
 # include <iostream>
 #include <fstream>
 #include <string.h>
