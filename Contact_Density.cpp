@@ -11,42 +11,47 @@ using namespace std;
 int main()
 {
 	char file_name[25],file_nam[25];
-	printf("Enter the protein conformation file(pdb file).\n");
-    cin>>file_name;
+	cout << "Enter the protein conformation file(pdb file)." << endl;
+    	cin >> file_name;
 	ifstream inputfile(file_name);
 	string s; double x[100],y[100],z[100]; int i=0;
 	while(!inputfile.eof()) 
 	{
-		inputfile>>s;
-		if(s=="ATOM")
+		inputfile >> s;
+		if(s == "ATOM")
 		{
-			inputfile>>s;
-			inputfile>>s;
+			inputfile >> s;
+			inputfile >> s;
 			if(s=="CA")
-			{inputfile>>s;inputfile>>s;inputfile>>s;
-			inputfile>>x[i]>>y[i]>>z[i];
-			i++;
-	
+			{
+				inputfile >> s;
+				inputfile >> s;
+				inputfile >> s;
+				inputfile >> x[i] >> y[i] >> z[i];
+				i++;
 			}
 		}
 		
 	}
 	inputfile.close();
-	printf("Enter the native protein conformation file(pdb file).\n");
-    cin>>file_nam;
-    ifstream inputfile1(file_nam);
-    double x1[100],y1[100],z1[100]; int j=0;
+	cout << "Enter the native protein conformation file(pdb file)." << endl;
+	cin>>file_nam;
+	ifstream inputfile1(file_nam);
+	double x1[100],y1[100],z1[100]; int j=0;
 	while(!inputfile1.eof()) 
 	{
-		inputfile1>>s;
+		inputfile1 >> s;
 		if(s=="ATOM")
 		{
-			inputfile1>>s;
-			inputfile1>>s;
-			if(s=="CA")
-			{inputfile1>>s;inputfile1>>s;inputfile1>>s;
-			inputfile1>>x1[j]>>y1[j]>>z1[j];
-			j++;	
+			inputfile1 >> s;
+			inputfile1 >> s;
+			if(s == "CA")
+			{
+				inputfile1 >> s;
+				inputfile1 >> s;
+				inputfile1 >> s;
+				inputfile1 >> x1[j] >> y1[j] >> z1[j];
+				j++;	
 			}
 		}
 		
@@ -84,14 +89,14 @@ int main()
 				k++;
 			}
 	}
- 	cout<<"No. of contacts in given protein conformation="<<count1<<endl;
- 	cout<<"No. of contacts in native protein conformation="<<count2<<endl;
+ 	cout << "No. of contacts in given protein conformation=" << count1 << endl;
+ 	cout << "No. of contacts in native protein conformation=" << count2 << endl;
  	for(i=0;i<k;i++)
  		if(counter1[i] && counter2[i])
  			com++;
- 	cout<<"Common contacts in conformation and native protein="<<com<<endl;
- 	cout<<"Contact Density="<<(com/count2)*100<<endl;
+ 	cout << "Common contacts in conformation and native protein=" << com << endl;
+ 	cout << "Contact Density=" << (com/count2)*100 << endl;
 	system("pause");	
 	
-return 0;
+	return 0;
 }
