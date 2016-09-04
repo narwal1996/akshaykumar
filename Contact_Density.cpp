@@ -4,13 +4,13 @@ q = number density = total number of contacts per structure (protein).
 contact density tells how close is this conformation to native structure.
 */
 
-# include <iostream>
-#include <fstream>
-#include <string.h>
+#include <bits/stdc++.h>
+
 using namespace std;
+
 int main()
 {
-	char file_name[25],file_nam[25];
+	string file_name, file_nam;
 	cout << "Enter the protein conformation file(pdb file)." << endl;
     	cin >> file_name;
 	ifstream inputfile(file_name);
@@ -35,7 +35,7 @@ int main()
 	}
 	inputfile.close();
 	cout << "Enter the native protein conformation file(pdb file)." << endl;
-	cin>>file_nam;
+	cin > >file_nam;
 	ifstream inputfile1(file_nam);
 	double x1[100],y1[100],z1[100]; int j=0;
 	while(!inputfile1.eof()) 
@@ -57,37 +57,42 @@ int main()
 		
 	}
 	inputfile1.close();
-	int cn=i,nn=j,counter1[1000],counter2[1000],k=0; double count1=0,count2=0,com=0;
-	for(i=0;i<cn-2;i++)
-	for(j=i+2;j<cn;j++)
+	int cn = i, nn = j, counter1[1000], counter2[1000], k = 0; 
+	double count1 = 0, count2 = 0, com = 0;
+	for(i = 0; i < cn-2; i++)
 	{
-		if(((x[i] - x[j])*(x[i] - x[j])+(y[i] - y[j])*(y[i] - y[j])+(z[i] - z[j])*(z[i] - z[j]))<36)
-	 	{
-			count1++;
-			counter1[k]=1;
-			k++;
-	 	}
-		else
+		for(j = i+2; j < cn; j++)
+		{
+			if(((x[i] - x[j])*(x[i] - x[j])+(y[i] - y[j])*(y[i] - y[j])+(z[i] - z[j])*(z[i] - z[j]))<36)
+		 	{
+				count1++;
+				counter1[k]=1;
+				k++;
+		 	}
+			else
 			{
 				counter1[k]=0;
 				k++;
 			}
+		}
 	}
 	k=0;
-	for(i=0;i<nn-2;i++)
-	for(j=i+2;j<nn;j++)
+	for(i = 0; i < nn-2; i++)
 	{
-		if(((x1[i] - x1[j])*(x1[i] - x1[j])+(y1[i] - y1[j])*(y1[i] - y1[j])+(z1[i] - z1[j])*(z1[i] - z1[j]))<36)
-	 	{
-			count2++;
-			counter2[k]=1;
-			k++;
-	 	}
-		else
+		for(j = i+2; j < nn; j++)
+		{
+			if(((x1[i] - x1[j])*(x1[i] - x1[j])+(y1[i] - y1[j])*(y1[i] - y1[j])+(z1[i] - z1[j])*(z1[i] - z1[j]))<36)
+		 	{
+				count2++;
+				counter2[k]=1;
+				k++;
+		 	}
+			else
 			{
 				counter2[k]=0;
 				k++;
 			}
+		}
 	}
  	cout << "No. of contacts in given protein conformation=" << count1 << endl;
  	cout << "No. of contacts in native protein conformation=" << count2 << endl;
